@@ -1,0 +1,127 @@
+1
+00:00:00,250 --> 00:00:02,969
+Your city is haunted by garbage.
+
+2
+00:00:03,019 --> 00:00:04,527
+This is Exorcity.
+
+3
+00:00:04,577 --> 00:00:07,209
+Exorcise it, and get rewarded.
+
+4
+00:00:07,709 --> 00:00:14,290
+In Indian cities, garbage dumped on roadsides, lakes and footpaths often has no owner, so it stays.
+
+5
+00:00:14,340 --> 00:00:18,643
+Exorcity turns every spot into a monster the whole city can see.
+
+6
+00:00:19,144 --> 00:00:21,467
+This is the haunted map of Bengaluru.
+
+7
+00:00:21,517 --> 00:00:23,583
+The spooky look carries meaning.
+
+8
+00:00:23,633 --> 00:00:27,881
+A bigger, redder, faster pulsing monster is a more urgent problem.
+
+9
+00:00:27,931 --> 00:00:35,192
+Monsters grow with age, from new, to ancient horror after thirty days, and every five confirmations adds a level.
+
+10
+00:00:35,699 --> 00:00:41,686
+When three or more spots appear within fifty metres in a month, the area becomes cursed, with a red aura.
+
+11
+00:00:41,736 --> 00:00:46,343
+This cluster is linked to Green Meadows Society, the nearest responsible entity.
+
+12
+00:00:46,843 --> 00:00:53,807
+For accessibility, every monster is also in a sortable list view, with keyboard support and a reduced motion switch.
+
+13
+00:00:54,310 --> 00:00:57,113
+Judges can try every role with one click.
+
+14
+00:00:57,163 --> 00:01:00,314
+Let's log in as Asha, a citizen ghost hunter.
+
+15
+00:01:00,814 --> 00:01:02,493
+Reporting takes seconds.
+
+16
+00:01:02,543 --> 00:01:07,246
+Pick the type, describe it, add a photo, and drop a pin with GPS.
+
+17
+00:01:07,296 --> 00:01:13,728
+Exorcity links the spot to the nearest society, campus or shop within two hundred metres.
+
+18
+00:01:14,227 --> 00:01:16,148
+Other hunters confirm sightings.
+
+19
+00:01:16,198 --> 00:01:21,321
+Confirming earns five points, and the reporter earns ten on the first confirmation.
+
+20
+00:01:21,820 --> 00:01:24,964
+To clean a spot, add an after photo and exorcise it.
+
+21
+00:01:25,014 --> 00:01:32,089
+The monster vanishes in smoke, the cleaner earns twenty five points, and a before and after slider proves the work.
+
+22
+00:01:32,595 --> 00:01:40,584
+Every action feeds a Civic Score from zero to nine hundred, with ratings from Cursed to Ghost Free, reward points, and a full audit trail.
+
+23
+00:01:41,088 --> 00:01:43,601
+Responsible entities get a dashboard too.
+
+24
+00:01:43,651 --> 00:01:47,165
+Green Meadows has four cursed spots and a Cursed rating.
+
+25
+00:01:47,215 --> 00:01:52,542
+Fast cleanups earn points, and a daily job penalises spots left open for over a week.
+
+26
+00:01:53,041 --> 00:01:59,115
+Ward officers see every open spot in their ward, scariest first, and can reject fake reports.
+
+27
+00:01:59,622 --> 00:02:06,156
+Leaderboards celebrate the best ghost hunters and the cleanest societies and campuses, and expose the most haunted wards.
+
+28
+00:02:06,657 --> 00:02:09,080
+Exorcity was built spec first with Kiro.
+
+29
+00:02:09,130 --> 00:02:18,971
+Four steering documents, nine specs with EARS requirements, agent hooks, and property based tests proving the score always stays between zero and nine hundred.
+
+30
+00:02:19,485 --> 00:02:20,263
+Exorcity.
+
+31
+00:02:20,313 --> 00:02:23,298
+Your city is haunted by garbage.
+
+32
+00:02:23,348 --> 00:02:26,149
+Exorcise it, and get rewarded.

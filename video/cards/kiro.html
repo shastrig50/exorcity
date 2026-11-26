@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Built with Kiro</title>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0b0f; color: #e8e6e3; font-family: Inter, sans-serif; overflow: hidden; }
+  .wrap { height: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 0 110px; box-sizing: border-box; }
+  h1 { font-family: Creepster, cursive; font-weight: 400; color: #ff6b00; font-size: 96px; margin: 0 0 20px; }
+  .card { background: #16161d; border: 1px solid rgba(255,255,255,.06); border-radius: 18px; padding: 28px 34px; }
+  .tree { font-family: 'JetBrains Mono', monospace; font-size: 25px; line-height: 1.55; color: #a8a6a3; }
+  .tree b { color: #ff6b00; font-weight: 400; } .tree i { color: #e8e6e3; font-style: normal; }
+  ul { list-style: none; padding: 0; margin: 0; font-size: 30px; line-height: 1.45; }
+  li { margin: 0 0 22px; opacity: 0; animation: in .7s ease-out forwards; }
+  li:nth-child(1) { animation-delay: .3s } li:nth-child(2) { animation-delay: 1.8s } li:nth-child(3) { animation-delay: 3.3s }
+  li:nth-child(4) { animation-delay: 4.8s } li:nth-child(5) { animation-delay: 6.3s }
+  @keyframes in { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: none; } }
+  li span { color: #39ff14; font-weight: 700; margin-right: 10px; }
+  .muted { color: #a8a6a3; font-size: 24px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div>
+      <h1>Built with Kiro</h1>
+      <ul>
+        <li><span>4</span>steering docs: product, tech, design, domain</li>
+        <li><span>9</span>specs: EARS requirements → design → tasks</li>
+        <li><span>3</span>agent hooks: tests on save, README API sync, a11y check</li>
+        <li><span>31</span>tests incl. jqwik property tests</li>
+        <li class="muted">Score always 0–900 · monster level 1–5, never decreasing with age · cleaning never lowers your score · no link beyond 200 m</li>
+      </ul>
+    </div>
+    <div class="card tree">
+      <b>.kiro/</b><br>
+      ├─ <b>steering/</b><br>
+      │&nbsp;&nbsp;├─ <i>product.md</i> · <i>tech.md</i><br>
+      │&nbsp;&nbsp;└─ <i>design.md</i> · <i>domain.md</i><br>
+      ├─ <b>specs/</b><br>
+      │&nbsp;&nbsp;├─ project-setup · auth-and-roles<br>
+      │&nbsp;&nbsp;├─ garbage-reporting · haunted-map<br>
+      │&nbsp;&nbsp;├─ confirmations-and-cleanup<br>
+      │&nbsp;&nbsp;├─ cursed-spots · civic-score-and-rewards<br>
+      │&nbsp;&nbsp;└─ leaderboards-and-dashboards · deployment<br>
+      └─ <b>hooks/</b><br>
+      &nbsp;&nbsp;&nbsp;├─ run-related-tests<br>
+      &nbsp;&nbsp;&nbsp;├─ update-readme-api<br>
+      &nbsp;&nbsp;&nbsp;└─ a11y-check-component
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+  { "id": "01-title", "text": "Your city is haunted by garbage. This is Exorcity. Exorcise it, and get rewarded." },
+  { "id": "02-landing", "text": "In Indian cities, garbage dumped on roadsides, lakes and footpaths often has no owner, so it stays. Exorcity turns every spot into a monster the whole city can see." },
+  { "id": "03-map", "text": "This is the haunted map of Bengaluru. The spooky look carries meaning. A bigger, redder, faster pulsing monster is a more urgent problem. Monsters grow with age, from new, to ancient horror after thirty days, and every five confirmations adds a level." },
+  { "id": "04-cursed", "text": "When three or more spots appear within fifty metres in a month, the area becomes cursed, with a red aura. This cluster is linked to Green Meadows Society, the nearest responsible entity." },
+  { "id": "05-list", "text": "For accessibility, every monster is also in a sortable list view, with keyboard support and a reduced motion switch." },
+  { "id": "06-login", "text": "Judges can try every role with one click. Let's log in as Asha, a citizen ghost hunter." },
+  { "id": "07-report", "text": "Reporting takes seconds. Pick the type, describe it, add a photo, and drop a pin with GPS. Exorcity links the spot to the nearest society, campus or shop within two hundred metres." },
+  { "id": "08-confirm", "text": "Other hunters confirm sightings. Confirming earns five points, and the reporter earns ten on the first confirmation." },
+  { "id": "09-exorcise", "text": "To clean a spot, add an after photo and exorcise it. The monster vanishes in smoke, the cleaner earns twenty five points, and a before and after slider proves the work." },
+  { "id": "10-profile", "text": "Every action feeds a Civic Score from zero to nine hundred, with ratings from Cursed to Ghost Free, reward points, and a full audit trail." },
+  { "id": "11-society", "text": "Responsible entities get a dashboard too. Green Meadows has four cursed spots and a Cursed rating. Fast cleanups earn points, and a daily job penalises spots left open for over a week." },
+  { "id": "12-ward", "text": "Ward officers see every open spot in their ward, scariest first, and can reject fake reports." },
+  { "id": "13-leaderboards", "text": "Leaderboards celebrate the best ghost hunters and the cleanest societies and campuses, and expose the most haunted wards." },
+  { "id": "14-kiro", "text": "Exorcity was built spec first with Kiro. Four steering documents, nine specs with EARS requirements, agent hooks, and property based tests proving the score always stays between zero and nine hundred." },
+  { "id": "15-outro", "text": "Exorcity. Your city is haunted by garbage. Exorcise it, and get rewarded." }
+]
