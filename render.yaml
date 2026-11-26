@@ -1,31 +1,25 @@
-# Render Blueprint: one-click backend + PostgreSQL.
-# Dashboard → New → Blueprint → pick this repo. Then set CORS_ALLOWED_ORIGINS to your frontend URL.
-databases:
-  - name: exorcity-db
-    plan: free
-    databaseName: exorcity
-    user: exorcity
-
 services:
   - type: web
-    name: exorcity-api
+    name: exorcity
     runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     plan: free
-    rootDir: backend
-    dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     envVars:
-      - key: DATABASE_URL          # postgres://… is converted to JDBC by the app
-        fromDatabase:
-          name: exorcity-db
-          property: connectionString
+      - key: DATABASE_URL
+        sync: false          # Set manually in Render dashboard (from Supabase)
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
       - key: JWT_SECRET
-        generateValue: true
+        generateValue: true  # Render auto-generates a random value
       - key: JWT_EXPIRATION_MINUTES
         value: "720"
       - key: CORS_ALLOWED_ORIGINS
-        sync: false                # e.g. https://exorcity.netlify.app
-      - key: CLOUDINARY_URL
-        sync: false                # optional
+        sync: false          # Set to your Netlify URL after frontend deploys
+      - key: PORT
+        value: "8080"
       - key: SEED_DEMO_DATA
         value: "true"

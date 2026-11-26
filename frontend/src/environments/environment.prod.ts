@@ -1,5 +1,6 @@
-// The deployment spec rewrites apiUrl at build time from the API_URL env var.
 export const environment = {
   production: true,
-  apiUrl: '/api',
+  // Netlify's build command replaces __API_URL__ with the real Render URL before ng build runs.
+  // See netlify.toml for the sed command.
+  apiUrl: '__API_URL__',
 };

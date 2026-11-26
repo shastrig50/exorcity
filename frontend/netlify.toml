@@ -1,15 +1,11 @@
-# In Netlify set "Base directory" to `frontend`.
 [build]
-  command = "npm run build:prod"
+  base    = "frontend"
   publish = "dist/frontend/browser"
+  # API_URL must be set in Netlify → Site settings → Environment variables.
+  # e.g. API_URL = https://exorcity.onrender.com/api
+  command = "sed -i 's|__API_URL__|'\"$API_URL\"'|g' src/environments/environment.prod.ts && npm run build"
 
-[build.environment]
-  NODE_VERSION = "20"
-  # Set API_URL in Netlify → Site settings → Environment variables,
-  # e.g. https://exorcity-api.onrender.com/api
-
-# SPA fallback so deep links like /spots/12 work
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from   = "/*"
+  to     = "/index.html"
   status = 200
