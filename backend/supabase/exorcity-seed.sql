@@ -6,7 +6,6 @@ BEGIN;
 -- PostgreSQL database dump
 --
 
-\restrict 1hSG1euIu6gvYzHAMDZrgQtfgjyUe0IrDpO3OX4WPzwXGIPtfPej6gTktQ9uIuq
 
 -- Dumped from database version 16.16
 -- Dumped by pg_dump version 16.16
@@ -903,7 +902,6 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 1hSG1euIu6gvYzHAMDZrgQtfgjyUe0IrDpO3OX4WPzwXGIPtfPej6gTktQ9uIuq
 
 
 COMMIT;

@@ -20,15 +20,16 @@
 
 ## Step 1 — Database (Supabase, ~3 min)
 
-1. Go to **https://supabase.com** → Sign up → New project
-2. Name: `exorcity` · Password: choose a strong one · Region: **Singapore**
-3. Wait ~1 min for provisioning
-4. Go to **Settings → Database → Connection string → URI** tab
-5. Copy the URI — looks like:  
-   `postgresql://postgres:[YOUR-PASSWORD]@db.xxxx.supabase.co:5432/postgres`
-6. Keep this tab open — you need it in Step 2
+1. Go to **https://supabase.com** → New project
+2. Name: `exorcity` · Region: **Southeast Asia (Singapore)** (same region as Render) · untick **Enable Data API** · tick **Enable RLS**
+3. Wait ~2 min until the status is **Healthy**
+4. **SQL Editor** → paste [`backend/supabase/exorcity-seed.sql`](backend/supabase/exorcity-seed.sql) → **Run** (schema, demo data and Flyway history in one transaction)
+5. **Connect → Direct → Session pooler** (Render has no IPv6, so the direct `db.xxxx.supabase.co` host will NOT work). Note:
+   - host `aws-0-ap-southeast-1.pooler.supabase.com`, port `5432`, database `postgres`
+   - user `postgres.<project-ref>` (not plain `postgres`)
+   - **Reset database password** there if you don't know it
 
-> Free tier: 500 MB, never expires, pauses after 7 days inactivity (auto-wakes on next request).
+> Free tier: 500 MB. Pauses after 7 days of inactivity and must be **restored manually** in the dashboard.
 
 ---
 
@@ -45,10 +46,10 @@
 
 | Key | Value |
 |---|---|
-| `DATABASE_URL` | Supabase URI from Step 1 |
-| `DB_USERNAME` | `postgres` |
-| `DB_PASSWORD` | Your Supabase password |
-| `JWT_SECRET` | Any 40+ char random string (e.g. `exorcity-kiroween-2026-jwt-secret-key-abc123`) |
+| `DATABASE_URL` | `postgresql://aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require` |
+| `DB_USERNAME` | `postgres.<project-ref>` |
+| `DB_PASSWORD` | Your Supabase database password |
+| `JWT_SECRET` | Click **Generate** in Render (never reuse a value from this public repo) |
 | `JWT_EXPIRATION_MINUTES` | `720` |
 | `CORS_ALLOWED_ORIGINS` | `*` ← set properly after Step 3 |
 | `PORT` | `8080` |
