@@ -1,0 +1,69 @@
+<a href="#main" class="sr-only-focusable fixed left-4 top-4 z-[2000] rounded bg-pumpkin px-4 py-2 font-semibold text-night">
+  Skip to main content
+</a>
+
+<header class="sticky top-0 z-[1000] border-b border-white/5 bg-night/90 backdrop-blur">
+  <nav class="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3" aria-label="Main">
+    <a routerLink="/" class="font-creep text-3xl text-pumpkin no-underline hover:no-underline" aria-label="Exorcity home">
+      Exorcity
+    </a>
+
+    <button
+      type="button"
+      class="btn-ghost md:hidden"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="primary-nav"
+      (click)="toggleMenu()">
+      <span aria-hidden="true">☰</span>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+
+    <div
+      id="primary-nav"
+      class="absolute left-0 right-0 top-full flex-col gap-1 border-b border-white/5 bg-night px-4 pb-4 md:static md:flex md:flex-row md:items-center md:gap-1 md:border-0 md:bg-transparent md:p-0"
+      [class.flex]="menuOpen()"
+      [class.hidden]="!menuOpen()">
+      @for (link of links(); track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="!text-pumpkin bg-crypt"
+          ariaCurrentWhenActive="page"
+          class="flex min-h-[44px] items-center rounded-md px-3 text-bone no-underline hover:bg-crypt hover:no-underline"
+          (click)="menuOpen.set(false)">
+          {{ link.label }}
+        </a>
+      }
+
+      @if (auth.user(); as u) {
+        <span class="flex min-h-[44px] items-center gap-2 rounded-md px-3 text-sm text-mist"
+              [attr.aria-label]="u.name + ', Civic Score ' + u.civicScore">
+          <span aria-hidden="true">👤</span>{{ u.name.split(' ')[0] }}
+          <span class="rounded bg-crypt px-2 py-0.5 font-semibold tabular-nums text-pumpkin" aria-hidden="true">{{ u.civicScore }}</span>
+        </span>
+        <button type="button" class="btn-ghost text-sm" (click)="logout()">Log out</button>
+      } @else {
+        <a routerLink="/login" class="btn-primary text-sm no-underline hover:no-underline" (click)="menuOpen.set(false)">Log in</a>
+      }
+
+      <button
+        type="button"
+        class="btn-ghost text-sm"
+        [attr.aria-pressed]="motion.reduced()"
+        [attr.aria-label]="motion.reduced() ? 'Animations off. Turn animations on' : 'Animations on. Turn animations off'"
+        (click)="motion.toggle()">
+        <span aria-hidden="true">{{ motion.reduced() ? '🕯️' : '✨' }}</span>
+        <span aria-hidden="true">{{ motion.reduced() ? 'Motion off' : 'Motion on' }}</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1" class="mx-auto max-w-6xl px-4 py-6">
+  <router-outlet />
+</main>
+
+<footer class="mx-auto max-w-6xl px-4 pb-24 pt-8 text-center text-xs text-mist">
+  Exorcity · a Kiroween 2026 project · Map data © OpenStreetMap contributors · All names are fictional.
+</footer>
+
+<app-toast-outlet />

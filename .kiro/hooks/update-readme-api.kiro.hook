@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Update README API section",
+  "description": "When a Spring controller changes, regenerate the API table in README.md.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["backend/src/main/java/**/*Controller.java"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Spring REST controller changed. Scan every *Controller.java under backend/src/main/java and collect each endpoint: HTTP method, full path (class @RequestMapping + method mapping), required role(s) from the security config / @PreAuthorize, and a short purpose (from @Operation summary if present). Rewrite ONLY the content between <!-- API:START --> and <!-- API:END --> in README.md as a markdown table with columns Method | Path | Auth | Description, sorted by path. Keep everything else in the README unchanged."
+  }
+}

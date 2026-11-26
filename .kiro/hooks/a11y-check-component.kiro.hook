@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Accessibility check for new Angular components",
+  "description": "When a new Angular component is created, review it against the design.md accessibility rules.",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": ["frontend/src/app/**/*.component.ts", "frontend/src/app/**/*.component.html"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new Angular component was created. Review its template (inline or .html) against .kiro/steering/design.md: (1) every icon-only button, link and map marker has an aria-label; (2) every <img> has meaningful alt text (alt=\"\" only if decorative); (3) form inputs have associated <label>s and errors use aria-describedby; (4) text colour combinations meet WCAG AA using the design tokens (no ecto/pumpkin body text on light backgrounds, bone text on blood); (5) interactive elements are keyboard reachable with visible focus-visible styles; (6) animations are disabled under .reduce-motion / prefers-reduced-motion. List each issue with the line and a concrete fix, then apply the fixes that do not change behaviour."
+  }
+}

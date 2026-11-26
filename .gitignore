@@ -1,0 +1,24 @@
+# NOTE: .kiro/ is intentionally NOT ignored — steering, specs and hooks are part of the submission.
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Backend
+backend/target/
+*.class
+*.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db

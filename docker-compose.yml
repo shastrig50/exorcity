@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: exorcity-db
+    environment:
+      POSTGRES_DB: exorcity
+      POSTGRES_USER: ${DB_USERNAME:-exorcity}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-exorcity}
+    ports:
+      - "${DB_PORT:-55432}:5432"
+    volumes:
+      - exorcity-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-exorcity} -d exorcity"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  exorcity-data:

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Illustration of the same place after cleaning, with a swept clean footpath">
+  <defs><radialGradient id="glow" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#1f3a1a"/><stop offset="1" stop-color="#0b0b0f"/></radialGradient></defs>
+  <rect width="640" height="400" fill="url(#glow)"/>
+  <rect y="300" width="640" height="100" fill="#2a2a33"/>
+  <rect y="296" width="640" height="8" fill="#44444f"/>
+  <g fill="#39ff14" opacity=".8">
+    <path d="M200 200 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6z"/>
+    <path d="M440 170 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 l12 -4z"/>
+    <path d="M330 120 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3z"/>
+  </g>
+  <rect x="290" y="230" width="60" height="70" rx="8" fill="#2f5d3a"/>
+  <rect x="282" y="222" width="76" height="14" rx="5" fill="#244a2e"/>
+  <text x="320" y="370" fill="#e8e6e3" font-family="Inter, sans-serif" font-size="20" text-anchor="middle">Sample photo · Exorcised and clean</text>
+</svg>

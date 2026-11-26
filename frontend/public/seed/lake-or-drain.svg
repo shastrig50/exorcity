@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Illustration of a drain clogged with floating trash">
+  <rect width="640" height="400" fill="#101018"/>
+  <rect y="230" width="640" height="170" fill="#1d3a34"/>
+  <path d="M0 240 q80 -12 160 0 t160 0 t160 0 t160 0" stroke="#2f5a50" stroke-width="6" fill="none"/>
+  <g opacity=".85">
+    <ellipse cx="180" cy="290" rx="40" ry="12" fill="#cfcfcf" opacity=".5"/>
+    <rect x="280" y="270" width="24" height="54" rx="8" fill="#7fb3d5" opacity=".6" transform="rotate(75 292 297)"/>
+    <ellipse cx="420" cy="310" rx="50" ry="14" fill="#6b5a3a"/>
+    <circle cx="520" cy="280" r="14" fill="#e8e6e3" opacity=".4"/>
+    <path d="M90 320 q20 -16 40 0 q-20 14 -40 0z" fill="#ffd29f" opacity=".5"/>
+  </g>
+  <text x="320" y="375" fill="#a8a6a3" font-family="Inter, sans-serif" font-size="20" text-anchor="middle">Sample photo · Lake or drain</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Illustration of an illegal dump with debris and old furniture">
+  <rect width="640" height="400" fill="#111117"/>
+  <rect y="300" width="640" height="100" fill="#2b2a24"/>
+  <g>
+    <path d="M120 310 L200 220 L280 260 L360 200 L470 250 L540 310 Z" fill="#4b4436"/>
+    <rect x="300" y="215" width="110" height="60" rx="4" fill="#6b4f32"/>
+    <rect x="310" y="275" width="10" height="35" fill="#5a4129"/><rect x="390" y="275" width="10" height="35" fill="#5a4129"/>
+    <rect x="180" y="250" width="70" height="48" rx="4" fill="#444" stroke="#666"/>
+    <rect x="190" y="258" width="50" height="30" fill="#1d2b33"/>
+    <path d="M440 300 l30 -40 l40 10 l-10 30z" fill="#7d7d7d"/>
+  </g>
+  <text x="320" y="370" fill="#a8a6a3" font-family="Inter, sans-serif" font-size="20" text-anchor="middle">Sample photo · Illegal dump</text>
+</svg>

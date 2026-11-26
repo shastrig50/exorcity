@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Illustration of scattered plastic waste">
+  <rect width="640" height="400" fill="#13131a"/>
+  <rect y="290" width="640" height="110" fill="#2a2620"/>
+  <g opacity=".9">
+    <path d="M120 300 q20 -50 60 -30 q30 20 0 40z" fill="#e8e6e3" opacity=".55"/>
+    <path d="M260 280 q30 -60 80 -30 q20 30 -20 50z" fill="#9fd3ff" opacity=".5"/>
+    <rect x="390" y="270" width="26" height="60" rx="8" fill="#7fb3d5" opacity=".7" transform="rotate(-30 403 300)"/>
+    <rect x="470" y="300" width="22" height="50" rx="7" fill="#8bc49a" opacity=".7" transform="rotate(60 481 325)"/>
+    <path d="M200 330 q30 -20 60 0 q-30 20 -60 0z" fill="#ffd29f" opacity=".6"/>
+    <circle cx="560" cy="320" r="16" fill="#e8e6e3" opacity=".4"/>
+  </g>
+  <text x="320" y="375" fill="#a8a6a3" font-family="Inter, sans-serif" font-size="20" text-anchor="middle">Sample photo · Plastic waste</text>
+</svg>

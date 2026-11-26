@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-night text-bone font-sans antialiased;
+  }
+  body {
+    @apply min-h-screen bg-night;
+  }
+  h1 {
+    @apply font-creep tracking-wide;
+  }
+  a {
+    @apply text-pumpkin underline-offset-4 hover:underline;
+  }
+  /* Visible focus for every interactive element */
+  :focus-visible {
+    @apply outline-none ring-2 ring-pumpkin ring-offset-2 ring-offset-night;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-pumpkin px-5 py-2 font-semibold text-night
+      transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-mist/40 px-4 py-2 text-bone
+      transition hover:border-pumpkin hover:text-pumpkin;
+  }
+  .card {
+    @apply rounded-xl border border-white/5 bg-crypt p-5 shadow-lg shadow-black/40;
+  }
+  .sr-only-focusable:not(:focus) {
+    @apply sr-only;
+  }
+}
+
+/* ---------- Monsters (size + colour + motion = urgency) ---------- */
+.monster {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid #e8e6e3;
+  background: radial-gradient(circle at 50% 40%, rgba(232, 230, 227, 0.18), rgba(11, 11, 15, 0.9));
+  line-height: 1;
+  animation: monster-bob 3.2s ease-in-out infinite;
+  cursor: pointer;
+}
+.monster-emoji { filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.6)); }
+.monster.lvl-1 { width: 28px; height: 28px; font-size: 17px; }
+.monster.lvl-2 { width: 34px; height: 34px; font-size: 21px; border-color: #ffa45c;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 107, 0, 0.25), rgba(11, 11, 15, 0.9)); }
+.monster.lvl-3 { width: 42px; height: 42px; font-size: 26px; border-color: #ff6b00;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.55);
+  background: radial-gradient(circle at 50% 40%, rgba(255, 107, 0, 0.4), rgba(11, 11, 15, 0.9));
+  animation: monster-pulse 2.4s ease-in-out infinite; }
+.monster.lvl-4 { width: 50px; height: 50px; font-size: 31px; border-color: #ff3b3b;
+  box-shadow: 0 0 16px rgba(255, 40, 40, 0.65);
+  background: radial-gradient(circle at 50% 40%, rgba(139, 0, 0, 0.7), rgba(11, 11, 15, 0.9));
+  animation: monster-pulse 1.6s ease-in-out infinite; }
+.monster.lvl-5 { width: 60px; height: 60px; font-size: 37px; border: 3px solid #ff1a1a;
+  box-shadow: 0 0 26px rgba(255, 26, 26, 0.85);
+  background: radial-gradient(circle at 50% 40%, rgba(139, 0, 0, 0.95), rgba(11, 11, 15, 0.95));
+  animation: monster-pulse 1s ease-in-out infinite, monster-shake 2.6s ease-in-out infinite; }
+.monster.cursed::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 9999px;
+  border: 3px solid rgba(255, 30, 30, 0.85);
+  box-shadow: 0 0 18px 4px rgba(255, 0, 0, 0.6), inset 0 0 12px rgba(255, 0, 0, 0.5);
+  animation: curse-aura 1.4s ease-out infinite;
+  pointer-events: none;
+}
+.leaflet-marker-icon:focus-visible .monster,
+.monster-marker:focus-visible .monster { outline: 3px solid #ff6b00; outline-offset: 4px; }
+.monster-marker { background: transparent; border: 0; }
+
+@keyframes monster-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes monster-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes monster-shake {
+  0%, 90%, 100% { rotate: 0deg; } 92% { rotate: -8deg; } 94% { rotate: 8deg; } 96% { rotate: -6deg; } 98% { rotate: 5deg; }
+}
+@keyframes curse-aura { 0% { transform: scale(0.85); opacity: 1; } 100% { transform: scale(1.35); opacity: 0; } }
+
+/* ---------- Exorcism smoke ---------- */
+.exorcise-stage { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.exorcising .monster { animation: exorcise-monster 1.2s ease-in forwards !important; }
+.smoke-puff {
+  position: absolute;
+  width: 46px; height: 46px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(200, 200, 210, 0.85), rgba(57, 255, 20, 0.15) 60%, transparent 70%);
+  filter: blur(4px);
+  opacity: 0;
+  animation: smoke-rise 1.4s ease-out forwards;
+}
+@keyframes exorcise-monster {
+  0% { transform: scale(1); opacity: 1; filter: blur(0); }
+  40% { transform: scale(1.35) rotate(-6deg); opacity: 1; }
+  100% { transform: scale(0.2) translateY(-40px); opacity: 0; filter: blur(8px); }
+}
+@keyframes smoke-rise {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  20% { opacity: 0.95; }
+  100% { transform: translate(var(--dx, 0), -110px) scale(2.2); opacity: 0; }
+}
+html.reduce-motion .exorcising .monster { opacity: 0; transition: opacity 0.3s !important; }
+html.reduce-motion .smoke-puff { display: none; }
+
+/* ---------- Candle loader ---------- */
+.candle { position: relative; width: 22px; height: 64px; }
+.candle-body { position: absolute; bottom: 0; width: 22px; height: 44px; border-radius: 4px; background: linear-gradient(#e8e6e3, #b9b3a8); }
+.candle-flame {
+  position: absolute; left: 50%; top: 0; width: 14px; height: 22px; margin-left: -7px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(circle at 50% 70%, #fff6c2, #ffb000 45%, #ff6b00 75%, transparent 80%);
+  box-shadow: 0 0 18px 6px rgba(255, 140, 0, 0.45);
+  transform-origin: 50% 100%;
+  animation: flicker 0.9s ease-in-out infinite alternate;
+}
+@keyframes flicker {
+  0% { transform: scaleY(1) rotate(-2deg); opacity: 0.9; }
+  50% { transform: scaleY(1.12) rotate(2deg); opacity: 1; }
+  100% { transform: scaleY(0.92) rotate(-1deg); opacity: 0.85; }
+}
+
+/* ---------- Fog (landing hero) ---------- */
+.fog-layer {
+  position: absolute; inset: -20% -50%;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(232, 230, 227, 0.09), transparent 55%),
+    radial-gradient(ellipse at 70% 40%, rgba(232, 230, 227, 0.07), transparent 50%),
+    radial-gradient(ellipse at 45% 80%, rgba(57, 255, 20, 0.04), transparent 50%);
+  animation: fog-drift 38s linear infinite;
+  pointer-events: none;
+}
+.fog-layer.fog-2 { animation-duration: 60s; animation-direction: reverse; opacity: 0.8; }
+@keyframes fog-drift { 0% { transform: translateX(-10%); } 50% { transform: translateX(10%); } 100% { transform: translateX(-10%); } }
+
+/* ---------- Dark Leaflet map (OSM tiles inverted, attribution kept) ---------- */
+.haunted-map { background: #0b0b0f; }
+.haunted-map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.75) contrast(0.95) saturate(0.4); }
+.haunted-map .leaflet-control-attribution { background: rgba(11, 11, 15, 0.8); color: #a8a6a3; }
+.haunted-map .leaflet-control-attribution a { color: #ff8a3d; }
+.haunted-map .leaflet-bar a { background: #16161d; color: #e8e6e3; border-color: #2a2a35; }
+.haunted-map .leaflet-bar a:hover { background: #22222c; }
+
+.score-arc { transition: stroke-dasharray 1s ease-out; }
+
+/* Reduced motion: system preference OR in-app toggle (.reduce-motion on <html>) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

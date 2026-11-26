@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Run related backend tests",
+  "description": "When a backend Java file is saved, run the unit and property tests that cover it.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["backend/src/**/*.java"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A backend Java file was just saved. 1) Work out the class name of the edited file (e.g. SpotService). 2) Find matching test classes under backend/src/test (ClassNameTest, ClassNameTests, ClassNameProperties, or tests that reference the class). If the edited file is itself a test, run that one. 3) Run them from the backend folder with: mvn -q -B test -Dtest=<Comma,Separated,Names> -Dsurefire.failIfNoSpecifiedTests=false. 4) Report pass/fail in two lines. If a test fails, show the failing assertion and suggest the smallest fix, but do not change production code without asking."
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Illustration of a roadside garbage pile">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1b26"/><stop offset="1" stop-color="#0b0b0f"/></linearGradient></defs>
+  <rect width="640" height="400" fill="url(#sky)"/>
+  <rect y="300" width="640" height="100" fill="#22222c"/>
+  <rect y="296" width="640" height="8" fill="#3a3a46"/>
+  <g>
+    <ellipse cx="320" cy="300" rx="190" ry="40" fill="#2e2a22"/>
+    <path d="M160 300 Q200 190 280 210 Q330 150 390 200 Q460 190 480 300 Z" fill="#4a3f2c"/>
+    <circle cx="250" cy="240" r="42" fill="#2d2d2d"/><circle cx="330" cy="215" r="48" fill="#3b3b3b"/>
+    <circle cx="410" cy="248" r="40" fill="#262626"/><rect x="280" y="250" width="70" height="40" rx="6" fill="#8a6a3a"/>
+    <path d="M220 270 l40 -10 l8 22 l-42 8z" fill="#c9c9c9" opacity=".7"/>
+  </g>
+  <text x="320" y="370" fill="#a8a6a3" font-family="Inter, sans-serif" font-size="20" text-anchor="middle">Sample photo · Roadside pile</text>
+</svg>
