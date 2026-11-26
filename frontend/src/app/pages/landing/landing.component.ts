@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../core/api.service';
+import { AuthService } from '../../core/auth.service';
 import { LEVELS, MONSTERS } from '../../core/monsters';
 import { SpotStats } from '../../core/models';
 import { MonsterAvatarComponent } from '../../shared/monster-avatar.component';
@@ -38,8 +39,14 @@ import { MonsterAvatarComponent } from '../../shared/monster-avatar.component';
 
         <div class="mt-10 flex flex-wrap justify-center gap-3">
           <a routerLink="/map" class="btn-primary px-8 text-lg no-underline hover:no-underline">Start Hunting</a>
+          @if (!auth.isLoggedIn()) {
+            <a routerLink="/login" class="btn-ghost no-underline hover:no-underline">🔑 Try a demo login</a>
+          }
           <a routerLink="/leaderboards" class="btn-ghost no-underline hover:no-underline">See the leaderboards</a>
         </div>
+        @if (!auth.isLoggedIn()) {
+          <p class="mt-4 text-sm text-mist">One-click demo accounts for every role · password <code class="text-bone">Demo&#64;123</code></p>
+        }
       </div>
     </section>
 
@@ -92,6 +99,7 @@ import { MonsterAvatarComponent } from '../../shared/monster-avatar.component';
 })
 export class LandingComponent implements OnInit {
   private readonly api = inject(ApiService);
+  readonly auth = inject(AuthService);
   readonly stats = signal<SpotStats | null>(null);
   readonly failed = signal(false);
   readonly monsters = MONSTERS;

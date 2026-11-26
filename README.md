@@ -9,6 +9,19 @@ societies, corporate campuses, shops) earn a **Civic Score (0–900)** with rati
 
 Built for **Kiroween 2026, Costume Contest**. The spooky UI carries meaning: *a scarier monster means a more urgent problem*.
 
+![Haunted map of Bengaluru](media/03-haunted-map-overview.png)
+
+## 🔑 Demo login
+Open the app → **Log in** (or **Try a demo login** on the landing page) → click a role. Every demo account uses the password **`Demo@123`**.
+
+| Role | Email | Try this |
+|---|---|---|
+| 🔦 Citizen | `citizen@exorcity.demo` | Report a spot, confirm one, exorcise one |
+| 🏘️ Society admin | `society@exorcity.demo` | Green Meadows Society, rated "Cursed" with 4 cursed spots |
+| 🏢 Corporate admin | `corporate@exorcity.demo` | Tech Park Alpha dashboard |
+| 🛒 Shop owner | `shop@exorcity.demo` | Corner Kirana Store dashboard |
+| 🛡️ Ward officer | `ward@exorcity.demo` | Koramangala ward: reject a fake report, run the daily job |
+
 ## Monsters
 | Garbage type | Monster |
 |---|---|
@@ -110,7 +123,7 @@ All demo users use the password **`Demo@123`**. The login page has a quick-login
 | Ward officer | `ward@exorcity.demo` | Koramangala ward: clean or reject reports, run the daily job |
 
 Seed data: 6 wards (Koramangala, Indiranagar, Whitefield, Jayanagar, Hebbal, Malleshwaram), 8 fictional entities and
-40 spots (32 open across all five levels, 7 cleaned, 1 rejected), including a 4-spot cursed cluster. All names are fictional.
+43 spots (32 open across all five levels, 10 cleaned, 1 rejected), including a 4-spot cursed cluster. All names are fictional.
 
 ## API
 Base path: `/api`. Interactive docs: `/swagger-ui.html`. List endpoints accept `page` and `size` (max 100).
@@ -160,8 +173,17 @@ a sortable list view as a keyboard and screen-reader alternative to the map, and
 respects `prefers-reduced-motion` (fog, pulse, shake and smoke are disabled).
 
 ## Screenshots
-_Add screenshots to `docs/screenshots/` and link them here:_
-Landing · Haunted Map · Report · Spot Details (before/after) · Exorcism · Profile · Entity Dashboard · Leaderboards
+All 15 images (1800×1200, 3:2) are in [`media/`](media).
+
+| | |
+|---|---|
+| ![Landing](media/01-landing-hero.png) Landing: live monster count | ![Bestiary](media/02-landing-bestiary-and-urgency-scale.png) Bestiary and urgency scale |
+| ![Map](media/04-map-level5-monster-selected.png) Level 5 "Ancient horror" selected | ![Cursed](media/05-map-cursed-cluster-red-aura.png) Cursed cluster with red auras |
+| ![List](media/06-list-view-accessible-alternative.png) Accessible list view | ![Login](media/07-login-demo-role-buttons.png) Demo login per role |
+| ![Report](media/08-report-garbage-form.png) Report garbage | ![Detail](media/09-spot-detail-ancient-horror.png) Spot details |
+| ![Exorcism](media/10-exorcism-smoke-animation.png) Exorcism smoke animation | ![Before/after](media/11-exorcised-before-after-slider.png) Before/after slider |
+| ![Profile](media/12-profile-civic-score-meter.png) Civic Score meter | ![Society](media/13-society-dashboard-cursed-rating.png) Society dashboard (Cursed) |
+| ![Ward](media/14-ward-officer-dashboard.png) Ward officer view | ![Leaderboards](media/15-leaderboards.png) Leaderboards |
 
 ## Built with Kiro
 The `.kiro/` folder contains:

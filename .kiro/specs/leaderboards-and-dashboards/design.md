@@ -6,7 +6,7 @@
 - `seed/DataSeeder` (`CommandLineRunner`, only on an empty `users` table):
   - Wards: Koramangala, Indiranagar, Whitefield, Jayanagar, Hebbal, Malleshwaram.
   - Entities: Green Meadows Society, Lakeview Residency, Silver Oak Apartments, Tech Park Alpha, Orion Business Campus, Nimbus Tech Campus, Corner Kirana Store, Fresh Bites Bakery (all fictional).
-  - 40 spots (ages 0–60 days; 32 open, 7 cleaned, 1 rejected); confirmations, cleanings, rejection, curses and overdue penalties are replayed through `CivicScoreService` with realistic timestamps.
+  - 43 spots (ages 0–60 days; 32 open, 10 cleaned, 1 rejected; three cleanups by Ravi make him the Ghost Free top hunter); confirmations, cleanings, rejection, curses and overdue penalties are replayed through `CivicScoreService` with realistic timestamps.
   - Asha (citizen@) is never used as a seeded confirmer, so she can confirm live in demos.
 
 ## Frontend

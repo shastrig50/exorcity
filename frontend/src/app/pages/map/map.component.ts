@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, computed, inject, signal, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, computed, inject, input, signal, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import * as L from 'leaflet';
 import { ApiService } from '../../core/api.service';
@@ -137,12 +137,12 @@ type SortKey = 'level' | 'age' | 'confirmations';
             @for (l of levels; track l.level) {
               <li class="flex items-center gap-3">
                 <span class="flex w-16 justify-center"><app-monster-avatar emoji="🧟" [level]="l.level" [scale]="0.75" /></span>
-                <span><span class="font-semibold text-bone">Level {{ l.level }}</span> <span class="text-mist">{{ l.title }}, {{ l.range }}</span></span>
+                <span><span class="font-semibold text-bone">Level {{ l.level }}</span><span class="ml-1.5 text-mist">{{ l.title }}, {{ l.range }}</span></span>
               </li>
             }
             <li class="flex items-center gap-3">
               <span class="flex w-16 justify-center"><app-monster-avatar emoji="👻" [level]="2" [cursed]="true" [scale]="0.75" /></span>
-              <span><span class="font-semibold text-[#ff7a7a]">Red aura</span> <span class="text-mist">cursed: 3+ spots within 50 m</span></span>
+              <span><span class="font-semibold text-[#ff7a7a]">Red aura</span><span class="ml-1.5 text-mist">cursed: 3+ spots within 50 m</span></span>
             </li>
           </ul>
           <p class="mt-3 text-xs text-mist">+1 level for every 5 confirmations.</p>
@@ -156,6 +156,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   private readonly zone = inject(NgZone);
   readonly auth = inject(AuthService);
   private readonly mapEl = viewChild.required<ElementRef<HTMLDivElement>>('mapEl');
+
+  /** Deep link: /map?spot=12 focuses and selects that monster. */
+  readonly spot = input<string | undefined>();
 
   readonly monsters = MONSTERS;
   readonly levels = LEVELS;
@@ -203,6 +206,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
         this.spots.set(page.content);
         this.loading.set(false);
         this.renderMarkers();
+        this.frame();
       },
       error: (e) => {
         this.loading.set(false);
@@ -235,6 +239,21 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   levelTitle(level: number): string {
     return levelInfo(level).title;
+  }
+
+  /** Initial viewport: the deep-linked spot, else every monster in view. */
+  private frame(): void {
+    if (!this.map) return;
+    const focus = this.spots().find((s) => String(s.id) === this.spot());
+    if (focus) {
+      this.selected.set(focus);
+      this.map.setView([focus.latitude, focus.longitude], 18);
+      return;
+    }
+    const all = this.spots();
+    if (all.length) {
+      this.map.fitBounds(L.latLngBounds(all.map((s) => [s.latitude, s.longitude] as L.LatLngTuple)), { padding: [40, 40] });
+    }
   }
 
   private renderMarkers(): void {

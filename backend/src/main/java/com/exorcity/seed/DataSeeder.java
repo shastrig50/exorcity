@@ -46,7 +46,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Seeds Bengaluru demo data on an empty database: 6 wards, 8 entities, demo users for every role
- * (password Demo@123) and ~40 spots of mixed ages, including one cursed cluster.
+ * (password Demo@123) and 43 spots of mixed ages, including one cursed cluster.
  * Scores are produced by replaying the real rules through {@link CivicScoreService}, so the
  * audit trail is consistent. All names are fictional.
  */
@@ -73,10 +73,19 @@ public class DataSeeder implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
     private final Clock clock;
 
-    /** reporter = index into the citizens list; cleanedDaysAgo only used for CLEANED spots. */
+    /**
+     * reporter / cleaner = index into the citizens list (cleaner -1 = pick the responsible party);
+     * cleanedDaysAgo only used for CLEANED spots.
+     */
     private record SeedSpot(GarbageType type, double lat, double lng, String ward, int ageDays, int confirmations,
-                            SpotStatus status, int cleanedDaysAgo, int reporter, String description) {
+                            SpotStatus status, int cleanedDaysAgo, int reporter, String description, int cleaner) {
+        SeedSpot(GarbageType type, double lat, double lng, String ward, int ageDays, int confirmations,
+                 SpotStatus status, int cleanedDaysAgo, int reporter, String description) {
+            this(type, lat, lng, ward, ageDays, confirmations, status, cleanedDaysAgo, reporter, description, -1);
+        }
     }
+
+    private static final int RAVI = 1;
 
     @Override
     @Transactional
@@ -122,11 +131,11 @@ public class DataSeeder implements CommandLineRunner {
 
         // ---- Spots ----
         List<SeedSpot> defs = List.of(
-                // Koramangala — cursed cluster behind Green Meadows Society (4 spots within ~20 m)
+                // Koramangala — cursed cluster behind Green Meadows Society (4 spots on a ~30 m square, all within 50 m)
                 new SeedSpot(ILLEGAL_DUMP, 12.93600, 77.62500, KORAMANGALA, 12, 6, OPEN, 0, 0, "Construction debris and household waste dumped behind the society wall"),
-                new SeedSpot(ROADSIDE_PILE, 12.93615, 77.62515, KORAMANGALA, 9, 3, OPEN, 0, 1, "Growing pile of mixed waste on the footpath next to the wall"),
-                new SeedSpot(PLASTIC_WASTE, 12.93590, 77.62485, KORAMANGALA, 5, 2, OPEN, 0, 2, "Plastic bags and bottles blowing across the lane"),
-                new SeedSpot(OVERFLOWING_BIN, 12.93608, 77.62488, KORAMANGALA, 2, 1, OPEN, 0, 3, "Community bin overflowing onto the road"),
+                new SeedSpot(ROADSIDE_PILE, 12.93627, 77.62500, KORAMANGALA, 9, 3, OPEN, 0, 1, "Growing pile of mixed waste on the footpath next to the wall"),
+                new SeedSpot(PLASTIC_WASTE, 12.93600, 77.62528, KORAMANGALA, 5, 2, OPEN, 0, 2, "Plastic bags and bottles blowing across the lane"),
+                new SeedSpot(OVERFLOWING_BIN, 12.93627, 77.62528, KORAMANGALA, 2, 1, OPEN, 0, 3, "Community bin overflowing onto the road"),
                 new SeedSpot(ROADSIDE_PILE, 12.93250, 77.62000, KORAMANGALA, 34, 8, OPEN, 0, 4, "Old garbage heap near the bus stop that nobody owns"),
                 new SeedSpot(LAKE_OR_DRAIN, 12.93000, 77.62900, KORAMANGALA, 18, 4, OPEN, 0, 5, "Storm drain choked with plastic and food waste"),
                 new SeedSpot(OVERFLOWING_BIN, 12.93800, 77.61800, KORAMANGALA, 1, 0, OPEN, 0, 6, "Bin outside the market not emptied today"),
@@ -167,7 +176,11 @@ public class DataSeeder implements CommandLineRunner {
                 new SeedSpot(ROADSIDE_PILE, 13.00800, 77.56500, MALLESHWARAM, 19, 2, OPEN, 0, 6, "Waste heap near the market cross road"),
                 new SeedSpot(ILLEGAL_DUMP, 12.99800, 77.57500, MALLESHWARAM, 33, 7, OPEN, 0, 7, "Construction waste blocking the footpath"),
                 new SeedSpot(LAKE_OR_DRAIN, 13.01000, 77.57800, MALLESHWARAM, 1, 0, OPEN, 0, 8, "Rainwater drain blocked with waste"),
-                new SeedSpot(ROADSIDE_PILE, 13.00200, 77.56900, MALLESHWARAM, 9, 2, CLEANED, 4, 9, "Garbage near the vegetable market"));
+                new SeedSpot(ROADSIDE_PILE, 13.00200, 77.56900, MALLESHWARAM, 9, 2, CLEANED, 4, 9, "Garbage near the vegetable market"),
+                // Ravi's past exorcisms: makes him the top (Ghost Free) hunter
+                new SeedSpot(PLASTIC_WASTE, 12.98200, 77.63200, INDIRANAGAR, 25, 0, CLEANED, 20, 4, "Plastic dumped near the park gate", RAVI),
+                new SeedSpot(ROADSIDE_PILE, 12.91600, 77.58600, JAYANAGAR, 18, 0, CLEANED, 15, 6, "Bags left at the bus shelter", RAVI),
+                new SeedSpot(OVERFLOWING_BIN, 13.03800, 77.60400, HEBBAL, 12, 0, CLEANED, 9, 8, "Overflowing bin at the lake entrance", RAVI));
 
         List<GarbageSpot> saved = new ArrayList<>();
         for (int i = 0; i < defs.size(); i++) {
@@ -200,7 +213,8 @@ public class DataSeeder implements CommandLineRunner {
 
             if (d.status() == CLEANED) {
                 Instant cleanedAt = now.minus(Duration.ofDays(d.cleanedDaysAgo()));
-                User cleaner = Optional.ofNullable(spot.getLinkedEntityId()).map(adminByEntity::get)
+                User cleaner = d.cleaner() >= 0 ? citizens.get(d.cleaner())
+                        : Optional.ofNullable(spot.getLinkedEntityId()).map(adminByEntity::get)
                         .orElseGet(() -> KORAMANGALA.equals(spot.getWard()) ? wardOfficer
                                 : citizens.get((d.reporter() + 1) % citizens.size()));
                 spot.setStatus(CLEANED);

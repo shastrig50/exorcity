@@ -107,7 +107,7 @@ import { ScoreMeterComponent } from '../../shared/score-meter.component';
             <li class="flex items-center gap-4 py-3">
               <app-monster-avatar [emoji]="s.monsterEmoji" [level]="s.monsterLevel" [cursed]="s.cursed" [scale]="0.8" />
               <div class="min-w-0 flex-1">
-                <p class="font-semibold text-bone">{{ s.monsterName }} <span class="text-sm font-normal text-mist">· Level {{ s.monsterLevel }} {{ levelTitle(s.monsterLevel) }}, {{ s.ageDays }} days</span></p>
+                <p class="font-semibold text-bone">{{ s.monsterName }} <span class="text-sm font-normal text-mist">· Level {{ s.monsterLevel }} {{ levelTitle(s.monsterLevel) }}, {{ s.ageDays }} {{ s.ageDays === 1 ? 'day' : 'days' }}</span></p>
                 <p class="truncate text-sm text-mist">{{ s.description }} · {{ s.linkedEntityName ?? 'Ward responsibility' }} · reported by {{ s.reportedByName }}</p>
               </div>
               <a [routerLink]="['/spots', s.id]" class="btn-primary shrink-0 text-sm no-underline hover:no-underline"

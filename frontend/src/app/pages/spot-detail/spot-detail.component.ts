@@ -19,7 +19,10 @@ import { TimeAgoPipe } from '../../shared/time-ago.pipe';
   imports: [RouterLink, DatePipe, TimeAgoPipe, BeforeAfterSliderComponent, CandleLoaderComponent,
     MonsterAvatarComponent, PhotoInputComponent],
   template: `
-    <a routerLink="/map" class="mb-4 inline-block text-sm">← Back to the haunted map</a>
+    <div class="mb-4 flex flex-wrap gap-4 text-sm">
+      <a routerLink="/map">← Back to the haunted map</a>
+      <a routerLink="/map" [queryParams]="{ spot: id() }">📍 View on map</a>
+    </div>
 
     @if (loading()) {
       <app-candle-loader />
